@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header{
+    padding: 1rem;
+}
+
+.books{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 80vw;
+    padding: 1rem 3rem;
+    border: 2px black solid;
+    border-radius: 1rem;
+    gap: 1rem;
+}
+
+.book{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: max(200px, 30%);
+    border: 1px solid blue;
+    border-radius: 1rem;
+}
