@@ -103,3 +103,7 @@ form > label{
 .book > h2{
     text-align: center;
 }
+
+.toggleRead,.delete{
+    margin-top: 1rem;
+}

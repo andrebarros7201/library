@@ -7,14 +7,6 @@ function Book(name, author, pages, read) {
   this.read = read;
 }
 
-Book.prototype.info = () => {
-  if (this.read) {
-    return `${this.name} by ${this.author}, ${this.pages} pages, already read.`;
-  } else {
-    return `${this.name} by ${this.author}, ${this.pages} pages, not read yet.`;
-  }
-};
-
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
@@ -49,11 +41,27 @@ const displayBooks = () => {
         displayBooks();
     });
 
+    const toggle = document.createElement('button');
+    toggle.textContent = 'Change Read';
+    toggle.classList.add('toggleRead');
+    toggle.addEventListener('click', () =>{
+      console.log(book.read);
+      if(book.read){
+        book.read = false;
+      }else{
+        book.read = true;
+      }
+      resetDisplay();
+      displayBooks();
+    })
+
+
     bookCard.appendChild(title);
     bookCard.appendChild(author);
     bookCard.appendChild(pages);
     bookCard.appendChild(read);
     bookCard.appendChild(buttonDelete);
+    bookCard.appendChild(toggle);
 
     books.appendChild(bookCard);
   });
@@ -70,8 +78,6 @@ addBookToLibrary(narnia);
 addBookToLibrary(percyJackson);
 addBookToLibrary(harryPotter);
 
-console.log(myLibrary);
-
 const buttonOpenDialog = document.querySelector('#openDialog');
 const buttonCloseDialog = document.querySelector('#closeDialog');
 const dialog = document.querySelector('dialog');
@@ -83,6 +89,7 @@ buttonOpenDialog.addEventListener('click', () =>{
 buttonCloseDialog.addEventListener('click', () =>{
     dialog.close();
 });
+
 const resetDisplay = () =>{
     const books = document.querySelector('.books')
     while(books.firstChild){
