@@ -99,3 +99,7 @@ form > label{
     border: 1px solid blue;
     border-radius: 1rem;
 }
+
+.book > h2{
+    text-align: center;
+}
