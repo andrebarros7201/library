@@ -56,4 +56,16 @@ addBookToLibrary(hobbit);
 
 console.log(myLibrary);
 
+const buttonOpenDialog = document.querySelector('#openDialog');
+const buttonCloseDialog = document.querySelector('#closeDialog');
+const dialog = document.querySelector('dialog');
+
+buttonOpenDialog.addEventListener('click', () =>{
+    dialog.showModal();
+});
+
+buttonCloseDialog.addEventListener('click', () =>{
+    dialog.close();
+})
+
 displayBooks();
