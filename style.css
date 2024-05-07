@@ -41,6 +41,30 @@ header{
     transform: translate(-50%, -50%);
 }
 
+dialog > button{
+    padding: 8px;
+    margin-bottom: 1rem;
+}
+
+form > button{
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 0;
+    background-color: crimson;
+    color: white;
+}
+
+fieldset{
+    border: 0;
+    margin-top: 1rem;
+}
+
+fieldset > legend{
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
 ::backdrop{
     background-color: black;
     opacity: 0.75;
