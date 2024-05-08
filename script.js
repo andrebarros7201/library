@@ -11,12 +11,18 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+const resetDisplay = () => {
+  const books = document.querySelector(".books");
+  while (books.firstChild) {
+    books.removeChild(books.firstChild);
+  }
+};
+
 const displayBooks = () => {
+  resetDisplay();
 
-    resetDisplay();
-
-    const books = document.querySelector('.books');
-    myLibrary.forEach((book) => {
+  const books = document.querySelector(".books");
+  myLibrary.forEach((book) => {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book");
 
@@ -32,31 +38,27 @@ const displayBooks = () => {
     const read = document.createElement("p");
     read.textContent = `Is read: ${book.read}`;
 
-    const buttonDelete = document.createElement('button');
-    buttonDelete.classList.add('delete');
-    buttonDelete.textContent = 'Delete';
-    
-    buttonDelete.addEventListener('click', () =>{
-        const index = myLibrary.indexOf(book)
-        console.log(index);
-        myLibrary.splice(index, 1);
-        resetDisplay();
-        displayBooks();
+    const buttonDelete = document.createElement("button");
+    buttonDelete.classList.add("delete");
+    buttonDelete.textContent = "Delete";
+
+    buttonDelete.addEventListener("click", () => {
+      myLibrary.splice(myLibrary.indexOf(book), 1);
+      resetDisplay();
+      displayBooks();
     });
 
-    const toggle = document.createElement('button');
-    toggle.textContent = 'Change Read';
-    toggle.classList.add('toggleRead');
-    toggle.addEventListener('click', () =>{
-      console.log(book.read);
-      if(book.read){
+    const toggle = document.createElement("button");
+    toggle.textContent = "Change Read Status";
+    toggle.classList.add("toggleRead");
+    toggle.addEventListener("click", () => {
+      if (book.read) {
         book.read = false;
-      }else{
+      } else {
         book.read = true;
       }
       displayBooks();
-    })
-
+    });
 
     bookCard.appendChild(title);
     bookCard.appendChild(author);
@@ -69,50 +71,30 @@ const displayBooks = () => {
   });
 };
 
-const narnia = new Book("The Chronicles of Narnia: The Lion, the Witch, and the Wardrobe", "C.S. Lewis", 192, false);
-const percyJackson = new Book("Percy Jackson & the Olympians: The Lightning Thief", "Rick Riordan", 384, true);
-const harryPotter = new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 223, false);
-const artemisFowl = new Book("Artemis Fowl", "Eoin Colfer", 288, true);
-const hobbit = new Book("The Hobbit", "JRR Tolkien", 295, true);
-addBookToLibrary(hobbit);
-addBookToLibrary(artemisFowl)
-addBookToLibrary(narnia);
-addBookToLibrary(percyJackson);
-addBookToLibrary(harryPotter);
+const buttonOpenDialog = document.querySelector("#openDialog");
+const buttonCloseDialog = document.querySelector("#closeDialog");
+const dialog = document.querySelector("dialog");
 
-const buttonOpenDialog = document.querySelector('#openDialog');
-const buttonCloseDialog = document.querySelector('#closeDialog');
-const dialog = document.querySelector('dialog');
-
-buttonOpenDialog.addEventListener('click', () =>{
-    dialog.showModal();
+buttonOpenDialog.addEventListener("click", () => {
+  dialog.showModal();
 });
 
-buttonCloseDialog.addEventListener('click', () =>{
-    dialog.close();
+buttonCloseDialog.addEventListener("click", () => {
+  dialog.close();
 });
 
-const resetDisplay = () =>{
-    const books = document.querySelector('.books')
-    while(books.firstChild){
-        books.removeChild(books.firstChild);
-    }
-}
-
-displayBooks();
-
-const form = document.querySelector('form');
-form.addEventListener('submit', (e) =>{
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let name = document.querySelector('#name').value;
-  let author = document.querySelector('#author').value;
-  let pages = document.querySelector('#pages').value;
-  let notRead = document.querySelector('#no').checked;
+  let name = document.querySelector("#name").value;
+  let author = document.querySelector("#author").value;
+  let pages = document.querySelector("#pages").value;
+  let notRead = document.querySelector("#no").checked;
 
-  if(notRead){
+  if (notRead) {
     addBookToLibrary(new Book(name, author, pages, false));
-  }else{
+  } else {
     addBookToLibrary(new Book(name, author, pages, true));
   }
 
@@ -120,3 +102,31 @@ form.addEventListener('submit', (e) =>{
 
   displayBooks();
 });
+
+const narnia = new Book(
+  "The Chronicles of Narnia: The Lion, the Witch, and the Wardrobe",
+  "C.S. Lewis",
+  192,
+  false
+);
+const percyJackson = new Book(
+  "Percy Jackson & the Olympians: The Lightning Thief",
+  "Rick Riordan",
+  384,
+  true
+);
+const harryPotter = new Book(
+  "Harry Potter and the Sorcerer's Stone",
+  "J.K. Rowling",
+  223,
+  false
+);
+const artemisFowl = new Book("Artemis Fowl", "Eoin Colfer", 288, true);
+const hobbit = new Book("The Hobbit", "JRR Tolkien", 295, true);
+addBookToLibrary(hobbit);
+addBookToLibrary(artemisFowl);
+addBookToLibrary(narnia);
+addBookToLibrary(percyJackson);
+addBookToLibrary(harryPotter);
+
+displayBooks();
