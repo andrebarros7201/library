@@ -12,6 +12,9 @@ function addBookToLibrary(book) {
 }
 
 const displayBooks = () => {
+
+    resetDisplay();
+
     const books = document.querySelector('.books');
     myLibrary.forEach((book) => {
     const bookCard = document.createElement("div");
@@ -51,7 +54,6 @@ const displayBooks = () => {
       }else{
         book.read = true;
       }
-      resetDisplay();
       displayBooks();
     })
 
@@ -98,3 +100,23 @@ const resetDisplay = () =>{
 }
 
 displayBooks();
+
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) =>{
+  e.preventDefault();
+
+  let name = document.querySelector('#name').value;
+  let author = document.querySelector('#author').value;
+  let pages = document.querySelector('#pages').value;
+  let notRead = document.querySelector('#no').checked;
+
+  if(notRead){
+    addBookToLibrary(new Book(name, author, pages, false));
+  }else{
+    addBookToLibrary(new Book(name, author, pages, true));
+  }
+
+  dialog.close();
+
+  displayBooks();
+});
