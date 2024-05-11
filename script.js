@@ -71,6 +71,7 @@ const displayBooks = () => {
   });
 };
 
+
 const buttonOpenDialog = document.querySelector("#openDialog");
 const buttonCloseDialog = document.querySelector("#closeDialog");
 const dialog = document.querySelector("dialog");
