@@ -1,10 +1,29 @@
 const myLibrary = [];
 
-function Book(name, author, pages, read) {
-  this.name = name;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(name, author, pages, readStatus) {
+    this.name = name;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+  }
+
+  // get name(){
+  //   return this.name;
+  // }
+
+  // get author(){
+  //   return this.author;
+  // }
+
+  // get pages(){
+  //   return this.pages;
+  // }
+
+  // get read(){
+  //   return readStatus;
+  // }
+
 }
 
 function addBookToLibrary(book) {
@@ -36,7 +55,7 @@ const displayBooks = () => {
     pages.textContent = `Nº of pages: ${book.pages}`;
 
     const read = document.createElement("p");
-    read.textContent = `Is read: ${book.read}`;
+    read.textContent = `Is read: ${book.readStatus}`;
 
     const buttonDelete = document.createElement("button");
     buttonDelete.classList.add("delete");
